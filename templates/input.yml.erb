@@ -4,7 +4,7 @@
 ---
 - type: <%= @input_type %>
   <%-
-   if @input_type =~ /(filestream|journald)/ 
+   if @input_type =~ /(filestream|journald)/
     parsers = @parsers
     if @multiline != {}
       parsers << {'multiline' => @multiline }
@@ -98,6 +98,10 @@
     <%- if @input_type == 'filestream' -%>
   prospector:
     scanner:
+      fingerprint:
+        enabled: <%= @fingerprint_enabled -%>
+        offset: 0
+        length: 1024
       <%- if @scan_frequency -%>
       check_interval: <%= @scan_frequency %>
       <%- end -%>

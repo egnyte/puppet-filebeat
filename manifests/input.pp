@@ -173,6 +173,9 @@
 # @param publisher_pipeline_disable_host
 #   Whether to disable the host field in the publisher pipeline (default: false)
 #
+# @param fingerprint_enabled
+#   Whether to enable fingerprinting for filebeat inputs (default: false)
+#
 define filebeat::input (
   Enum['absent', 'present'] $ensure        = present,
   Array[String] $paths                     = [],
@@ -226,6 +229,7 @@ define filebeat::input (
   Optional[String] $max_message_size       = undef,
   Optional[String] $index                  = undef,
   Boolean $publisher_pipeline_disable_host = false,
+  Boolean $fingerprint_enabled             = false,
 ) {
   if 'filebeat_version' in $facts and $facts['filebeat_version'] != false {
     if versioncmp($facts['filebeat_version'], '6') > 0 {
