@@ -98,10 +98,12 @@
     <%- if @input_type == 'filestream' -%>
   prospector:
     scanner:
+      <%- if @fingerprint_enabled == true -%>
       fingerprint:
         enabled: <%= @fingerprint_enabled %>
         offset: 0
         length: 1024
+      <%- end -%>
       <%- if @scan_frequency -%>
       check_interval: <%= @scan_frequency %>
       <%- end -%>
