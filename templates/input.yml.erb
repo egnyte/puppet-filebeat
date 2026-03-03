@@ -18,6 +18,9 @@
   <%- if @input_type == 'filestream' && @take_over != nil && @take_over == true -%>
   take_over: true
   <%- end -%>
+  <%- if @input_type == 'filestream' && @fingerprint_enabled == true -%>
+  file_identity.fingerprint: ~
+  <%- end -%>
   <%- if @input_type =~ /(tcp|udp)/ -%>
   host: <%= @host %>
     <%- if @ssl.length > 0 -%>
